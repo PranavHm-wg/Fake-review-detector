@@ -6,20 +6,20 @@ A machine learning + NLP web application that detects whether a product review i
 
 ⸻
 
-🚀 Live Demo
+ Live Demo
 
-👉 (Add your Streamlit link here after deployment)
+ https://fake-review-detector-pranav.streamlit.app
 
 ⸻
 
-📌 Problem Statement
+ Problem Statement
 
 Fake reviews are a major issue in e-commerce platforms.
 This project aims to classify reviews as Fake (CG) or Real (OR) using Natural Language Processing techniques.
 
 ⸻
 
-⚙️ Features
+ Features
 	•	Text preprocessing (lowercasing, punctuation handling, stopword removal)
 	•	TF-IDF vectorization with n-grams
 	•	Machine Learning models:
@@ -30,14 +30,14 @@ This project aims to classify reviews as Fake (CG) or Real (OR) using Natural La
 
 ⸻
 
-🧠 Model Performance
+ Model Performance
 	•	Accuracy: ~89%
 	•	Balanced precision and recall across both classes
 	•	Handles real-world text inputs via web app
 
 ⸻
 
-🛠 Tech Stack
+ Tech Stack
 	•	Python
 	•	Pandas, NumPy
 	•	Scikit-learn
