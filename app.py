@@ -44,7 +44,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="title">🧠 Fake Review Detector</div>', unsafe_allow_html=True)
+st.markdown('<div class="title"> Fake Review Detector</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">AI-powered NLP model to detect fake vs real reviews</div>', unsafe_allow_html=True)
 
 # Input box
@@ -72,10 +72,10 @@ if user_input and analyze_clicked:
     pred = prediction[0]
 
     if pred == 1 or pred == "CG":
-        st.error(f"🚨 Fake Review Detected ({confidence}% confidence)")
+        st.error(f" Fake Review Detected ({confidence}% confidence)")
     else:
-        st.success(f"✅ Real Review ({confidence}% confidence)")
+        st.success(f" Real Review ({confidence}% confidence)")
 
-    st.write("### 🔍 Model Confidence Breakdown")
+    st.write("###  Model Confidence Breakdown")
     st.write(f"Real Probability: {round(proba[0][1]*100, 2)}%")
     st.write(f"Fake Probability: {round(proba[0][0]*100, 2)}%")
