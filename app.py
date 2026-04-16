@@ -49,7 +49,7 @@ st.markdown('<div class="subtitle">AI-powered NLP model to detect fake vs real r
 
 # Input box
 user_input = st.text_area(
-    "✍️ Enter your review here:",
+    " Enter your review here:",
     height=150,
     placeholder="Try: 'This product exceeded expectations and works perfectly...'",
 )
