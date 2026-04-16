@@ -44,12 +44,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="title">🧠 Fake Review Detector</div>', unsafe_allow_html=True)
+st.markdown('<div class="title"> Fake Review Detector</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">AI-powered NLP model to detect fake vs real reviews</div>', unsafe_allow_html=True)
 
 # Input box
 user_input = st.text_area(
-    "✍️ Enter your review here:",
+    "️ Enter your review here:",
     height=150,
     placeholder="Try: 'This product exceeded expectations and works perfectly...'",
 )
@@ -69,9 +69,9 @@ if user_input and analyze_clicked:
     st.markdown("---")
 
     if prediction[0] == 1:
-        st.error(f"🚨 Fake Review Detected ({confidence}% confidence)")
+        st.error(f" Fake Review Detected ({confidence}% confidence)")
     else:
-        st.success(f"✅ Real Review ({confidence}% confidence)")
+        st.success(f" Real Review ({confidence}% confidence)")
 
     st.write("### 🔍 Model Confidence Breakdown")
     st.write(f"Fake Probability: {round(proba[0][1]*100, 2)}%")
