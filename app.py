@@ -55,7 +55,7 @@ user_input = st.text_area(
 )
 
 st.markdown("<br>", unsafe_allow_html=True)
-analyze_clicked = st.button("🔍 Analyze Review")
+analyze_clicked = st.button(" Analyze Review")
 
 if user_input and analyze_clicked:
     with st.spinner("Analyzing review..."):
