@@ -26,7 +26,7 @@ def clean_text(text):
 # UI
 st.set_page_config(page_title="Fake Review Detector", layout="centered")
 
-# Custom CSS for better look
+# Custom CtSS for better look
 st.markdown("""
     <style>
         .main {background-color: #0e1117;}
@@ -48,25 +48,21 @@ st.markdown('<div class="title">🧠 Fake Review Detector</div>', unsafe_allow_h
 st.markdown('<div class="subtitle">AI-powered NLP model to detect fake vs real reviews</div>', unsafe_allow_html=True)
 
 # Input box
-user_input = st.text_area("✍️ Enter your review here:", height=150, placeholder="Type or paste a product review...")
+user_input = st.text_area(
+    "✍️ Enter your review here:",
+    height=150,
+    placeholder="Try: 'This product exceeded expectations and works perfectly...'",
+)
 
-# Example buttons
-col1, col2 = st.columns(2)
+st.markdown("<br>", unsafe_allow_html=True)
+analyze_clicked = st.button("🔍 Analyze Review")
 
-with col1:
-    if st.button("Try Fake Example"):
-        user_input = "Amazing amazing amazing!!! Best product ever ever ever!!!"
-
-with col2:
-    if st.button("Try Real Example"):
-        user_input = "The product is decent and works as expected, but delivery was a bit slow."
-
-# Analyze button
-if user_input and st.button("🔍 Analyze Review"):
-    cleaned = clean_text(user_input)
-    vector = vectorizer.transform([cleaned])
-    prediction = model.predict(vector)
-    proba = model.predict_proba(vector)
+if user_input and analyze_clicked:
+    with st.spinner("Analyzing review..."):
+        cleaned = clean_text(user_input)
+        vector = vectorizer.transform([cleaned])
+        prediction = model.predict(vector)
+        proba = model.predict_proba(vector)
 
     confidence = round(max(proba[0]) * 100, 2)
 
