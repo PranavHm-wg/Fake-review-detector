@@ -26,20 +26,57 @@ def clean_text(text):
 # UI
 st.set_page_config(page_title="Fake Review Detector", layout="centered")
 
-st.title("🧠 Fake Review Detector")
-st.write("Enter a review and check if it's fake or real.")
+# Custom CSS for better look
+st.markdown("""
+    <style>
+        .main {background-color: #0e1117;}
+        .title {text-align: center; font-size: 36px; font-weight: bold; color: #00ffcc;}
+        .subtitle {text-align: center; font-size: 16px; color: #cccccc; margin-bottom: 20px;}
+        .stButton>button {
+            background-color: #00ffcc;
+            color: black;
+            border-radius: 8px;
+            height: 3em;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-user_input = st.text_area("Enter your review:")
+st.markdown('<div class="title">🧠 Fake Review Detector</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">AI-powered NLP model to detect fake vs real reviews</div>', unsafe_allow_html=True)
 
-if st.button("Analyze"):
+# Input box
+user_input = st.text_area("✍️ Enter your review here:", height=150, placeholder="Type or paste a product review...")
+
+# Example buttons
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("Try Fake Example"):
+        user_input = "Amazing amazing amazing!!! Best product ever ever ever!!!"
+
+with col2:
+    if st.button("Try Real Example"):
+        user_input = "The product is decent and works as expected, but delivery was a bit slow."
+
+# Analyze button
+if user_input and st.button("🔍 Analyze Review"):
     cleaned = clean_text(user_input)
     vector = vectorizer.transform([cleaned])
     prediction = model.predict(vector)
     proba = model.predict_proba(vector)
 
-    if prediction[0] == 1:
-        st.error("🚨 Fake Review")
-    else:
-        st.success("✅ Real Review")
+    confidence = round(max(proba[0]) * 100, 2)
 
-    st.write("Confidence:", round(max(proba[0]) * 100, 2), "%")
+    st.markdown("---")
+
+    if prediction[0] == 1:
+        st.error(f"🚨 Fake Review Detected ({confidence}% confidence)")
+    else:
+        st.success(f"✅ Real Review ({confidence}% confidence)")
+
+    st.write("### 🔍 Model Confidence Breakdown")
+    st.write(f"Fake Probability: {round(proba[0][1]*100, 2)}%")
+    st.write(f"Real Probability: {round(proba[0][0]*100, 2)}%")
